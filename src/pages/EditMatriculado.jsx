@@ -3,23 +3,40 @@ import { useState } from "react"
 import { toast } from "react-toastify"
 import CardMatriculado from "../components/CardMatriculado"
 import { useParams } from "react-router-dom"
+import { useEffect } from "react"
+import api from "../utils/api"
 
 const EditMatriculado = () => {
     const { id } = useParams()
-    const [name, setName] = useState('Carlos Eduardo Silva')
-    const [phone, setPhone] = useState('98991234567')
-    const [category, setCategory] = useState(0)
-    const [course, setCourse] = useState('Eletrônica')
-    function handleSubmit(){
-        if(name == '' || phone == '' || category == -1 || course == ''){
-            toast.info('Preencha todos os campos')
-            return
+    const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
+    const [category, setCategory] = useState(-1)
+    const [course, setCourse] = useState('')
+    useEffect(() => {
+        async function load() {
+            try {
+                const response = await api.get(`/matriculado/${id}`)
+                setName(response.data.matriculado.name)
+                setPhone(response.data.matriculado.phone)
+                setCategory(Number(response.data.matriculado.category))
+                setCourse(response.data.matriculado.course)
+            } catch (error) {
+                toast.error(error.response.data.message)
+            }
         }
-        console.log(name, phone, category, course)
-        toast.success('Matriculado editado')
+        load()
+    }, [id])
+    async function handleSubmit() {
+        const matriculado = { name, phone, category, course }
+        try {
+            const response = await api.patch(`/matriculado/${id}`, matriculado)
+            toast.success(response.data.message)
+        } catch (error) {
+            toast.error(error.response.data.message)
+        }
     }
     const props = {
-        name, setName, phone, setPhone, category, 
+        name, setName, phone, setPhone, category,
         setCategory, course, setCourse, handleSubmit
     }
     return (

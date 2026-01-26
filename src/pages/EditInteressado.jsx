@@ -3,27 +3,47 @@ import { useState } from "react"
 import { toast } from "react-toastify"
 import { useParams } from "react-router-dom"
 import CardInteressado from "../components/CardInteressado"
+import { useEffect } from "react"
+import api from "../utils/api"
 
 const EditInteressado = () => {
     const { id } = useParams()
-    const [name, setName] = useState('Pedro Henrique Sousa')
-    const [phone, setPhone] = useState('98998123456')
-    const [email, setEmail] = useState('pedro.sousa@gmail.com')
-    const [source, setSource] = useState('Instagram')
-    const [category, setCategory] = useState(0)
-    const [course, setCourse] = useState('Eletrônica')
-    const [obs, setObs] = useState('Solicitou informações sobre valor e duração do curso')
-    function handleSubmit(){
-        if(name == '' || phone == '' || category == -1 || course == ''){
-            toast.info('Preencha os campos obrigatórios')
-            return
+    const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
+    const [source, setSource] = useState('')
+    const [category, setCategory] = useState(-1)
+    const [course, setCourse] = useState('')
+    const [obs, setObs] = useState('')
+    useEffect(() => {
+        async function load() {
+            try {
+                const response = await api.get(`/interessado/${id}`)
+                setName(response.data.interessado.name)
+                setPhone(response.data.interessado.phone)
+                setCategory(Number(response.data.interessado.category))
+                setCourse(response.data.interessado.course)
+                setEmail(response.data.interessado.email)
+                setSource(response.data.interessado.source)
+                setObs(response.data.interessado.obs)
+            } catch (error) {
+                toast.error(error.response.data.message)
+            }
         }
-        console.log(name, phone, category, course, email, source, obs)
-        toast.success('Interessado editado')
+        load()
+    }, [id])
+    async function handleSubmit() {
+        const interessado = { name, phone, category, course, email, source, obs }
+        try {
+            const response = await api.patch(`/interessado/${id}`, interessado)
+            toast.success(response.data.message)
+        } catch (error) {
+            toast.error(error.response.data.message)
+        }
     }
     const props = {
-        name, setName, phone, setPhone, category, 
-        setCategory, course, setCourse, source, setSource, 
+        name, setName, phone, setPhone, category,
+        setCategory, course, setCourse, source, setSource,
         email, setEmail, obs, setObs, handleSubmit
     }
     return (

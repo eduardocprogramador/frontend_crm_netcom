@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 
 const InteressadoInfo = ({ 
-    id, name, phone, email, source, 
-    course, date, attendant, obs 
+    id, name, phone, email, source, course, 
+    date, attendant, obs, onDelete 
 }) => {
     return (
         <div className='py-1'>
@@ -45,7 +45,7 @@ const InteressadoInfo = ({
                 </div>
             </div>
             <Link to={`/editar_interessado/${id}`} className='btn btn-primary px-4 me-4'>Editar</Link>
-            <button className='btn btn-danger px-4'>Excluir</button>
+            <button className='btn btn-danger px-4' onClick={onDelete}>Excluir</button>
             <hr />
         </div>
     )

@@ -47,7 +47,7 @@ const SearchMatriculado = () => {
             <Search {...props} />
             {matriculados.map((m, index) => (
                 <MatriculadoInfo
-                    id={m.id} name={m.name} phone={m.phone} course={m.course}
+                    id={m.id} name={m.name} phone={m.phone} course={m.course} 
                     date={m.date} onDelete={() => handleDelete(m.id)}
                 />
             ))}
