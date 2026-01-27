@@ -10,7 +10,6 @@ import AddMatriculado from "./pages/AddMatriculado"
 import AddInteressado from "./pages/AddInteressado"
 import SearchInteressado from "./pages/SearchInteressado"
 import SearchMatriculado from "./pages/SearchMatriculado"
-import EditInteressado from "./pages/EditInteressadoModal"
 import GraphicTotalsInteressado from "./pages/GraphicTotalsInteressado"
 import GraphicSourceInteressado from "./pages/GraphicSourceInteressado"
 import GraphicTotalsMatriculado from "./pages/GraphicTotalsMatriculado"
@@ -65,14 +64,6 @@ const RoutesApp = () => {
         <Private>
           <Layout>
             <SearchInteressado />
-          </Layout>
-        </Private>
-      } 
-      />
-      <Route path="/editar_interessado/:id" element={
-        <Private>
-          <Layout>
-            <EditInteressado />
           </Layout>
         </Private>
       } 

@@ -1,6 +1,6 @@
 const InteressadoInfo = ({ 
-    name, phone, email, source, course, 
-    date, attendant, obs, onEdit, onDelete 
+    name, phone, email, source, course, date, 
+    attendant, obs, onEdit, onDelete, loading 
 }) => {
     return (
         <div className='py-1'>
@@ -43,7 +43,9 @@ const InteressadoInfo = ({
                 </div>
             </div>
             <button className='btn btn-primary px-4 me-4' onClick={onEdit}>Editar</button>
-            <button className='btn btn-danger px-4' onClick={onDelete}>Excluir</button>
+            <button className='btn btn-danger px-4' onClick={onDelete} disabled={loading}>
+                Excluir
+            </button>
             <hr />
         </div>
     )

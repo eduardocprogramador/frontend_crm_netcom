@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Search from '../components/Search'
 import { getTodayDate } from '../utils/getTodayDate'
-import InteressadoInfo from '../components/SearchInteressado/InteressadoInfo'
+import InteressadoInfo from '../components/InteressadoInfo'
 import api from '../utils/api'
 import { toast } from 'react-toastify'
 import EditInteressadoModal from './EditInteressadoModal'
@@ -17,6 +17,7 @@ const SearchInteressado = () => {
     const [searched, setSearched] = useState(false)
     const [showModal, setShowModal] = useState(false)
     const [selectedId, setSelectedId] = useState(null)
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         if (searched && interessados.length == 0) {
             toast.info('Nenhum interessado encontrado')
@@ -30,12 +31,15 @@ const SearchInteressado = () => {
         if (category != -1) params.category = category
         if (course) params.course = course
         try {
+            setLoading(true)
             const response = await api.get('/interessado/search', { params })
             setInteressados(response.data.interessados)
             setTotal(response.data.total)
             setSearched(true)
         } catch (error) {
             toast.error(error.response.data.message)
+        } finally {
+            setLoading(false)
         }
     }
     function handleEdit(id) {
@@ -48,17 +52,21 @@ const SearchInteressado = () => {
     }
     async function handleDelete(id) {
         try {
+            setLoading(true)
             const response = await api.delete(`/interessado/${id}`)
             toast.success(response.data.message)
             setInteressados(prev => prev.filter(i => i.id != id))
             setTotal(prev => Math.max(0, prev - 1))
+            setSearched(false)
         } catch (error) {
             toast.error(error.response.data.message)
+        } finally {
+            setLoading(false)
         }
     }
     const props = {
         name, setName, initialDate, setInitialDate, finalDate, setFinalDate,
-        category, setCategory, course, setCourse, total, handleSubmit
+        category, setCategory, course, setCourse, total, handleSubmit, loading
     }
     return (
         <>
@@ -69,6 +77,7 @@ const SearchInteressado = () => {
                         id={i.id} name={i.name} phone={i.phone} email={i.email} source={i.source}
                         course={i.course} date={i.date} attendant={i.attendant} obs={i.obs}
                         onEdit={() => handleEdit(i.id)} onDelete={() => handleDelete(i.id)}
+                        loading={loading}
                     />
                 ))}
             </div>

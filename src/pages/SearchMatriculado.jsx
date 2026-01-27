@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Search from '../components/Search'
 import { getTodayDate } from '../utils/getTodayDate'
-import MatriculadoInfo from '../components/SearchMatriculado/MatriculadoInfo'
+import MatriculadoInfo from '../components/MatriculadoInfo'
 import api from '../utils/api'
 import { toast } from 'react-toastify'
 import EditMatriculadoModal from './EditMatriculadoModal'
@@ -17,6 +17,7 @@ const SearchMatriculado = () => {
     const [searched, setSearched] = useState(false)
     const [showModal, setShowModal] = useState(false)
     const [selectedId, setSelectedId] = useState(null)
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         if (searched && matriculados.length == 0) {
             toast.info('Nenhum matriculado encontrado')
@@ -30,12 +31,15 @@ const SearchMatriculado = () => {
         if (category != -1) params.category = category
         if (course) params.course = course
         try {
+            setLoading(true)
             const response = await api.get('/matriculado/search', { params })
             setMatriculados(response.data.matriculados)
             setTotal(response.data.total)
             setSearched(true)
         } catch (error) {
             toast.error(error.response.data.message)
+        } finally {
+            setLoading(false)
         }
     }
     function handleEdit(id) {
@@ -48,17 +52,21 @@ const SearchMatriculado = () => {
     }
     async function handleDelete(id) {
         try {
+            setLoading(true)
             const response = await api.delete(`/matriculado/${id}`)
             toast.success(response.data.message)
             setMatriculados(prev => prev.filter(m => m.id != id))
             setTotal(prev => Math.max(0, prev - 1))
+            setSearched(false)
         } catch (error) {
             toast.error(error.response.data.message)
+        } finally {
+            setLoading(false)
         }
     }
     const props = {
         name, setName, initialDate, setInitialDate, finalDate, setFinalDate,
-        category, setCategory, course, setCourse, total, handleSubmit
+        category, setCategory, course, setCourse, total, handleSubmit, loading
     }
     return (
         <>
@@ -66,8 +74,9 @@ const SearchMatriculado = () => {
                 <Search {...props} />
                 {matriculados.map((m, index) => (
                     <MatriculadoInfo
-                        id={m.id} name={m.name} phone={m.phone} course={m.course} date={m.date}
+                        name={m.name} phone={m.phone} course={m.course} date={m.date}
                         onEdit={() => handleEdit(m.id)} onDelete={() => handleDelete(m.id)}
+                        loading={loading}
                     />
                 ))}
             </div>

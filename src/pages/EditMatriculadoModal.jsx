@@ -10,6 +10,7 @@ const EditMatriculadoModal = ({ id, onClose, onSaved }) => {
     const [phone, setPhone] = useState('')
     const [category, setCategory] = useState(-1)
     const [course, setCourse] = useState('')
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         async function load() {
             try {
@@ -27,17 +28,20 @@ const EditMatriculadoModal = ({ id, onClose, onSaved }) => {
     async function handleSubmit() {
         const matriculado = { name, phone, category, course }
         try {
+            setLoading(true)
             const response = await api.patch(`/matriculado/${id}`, matriculado)
             toast.success(response.data.message)
             onSaved?.(response.data.matriculado)
             onClose()
         } catch (error) {
             toast.error(error.response.data.message)
+        } finally {
+            setLoading(false)
         }
     }
     const props = {
-        name, setName, phone, setPhone, category,
-        setCategory, course, setCourse, handleSubmit
+        name, setName, phone, setPhone, category, setCategory, 
+        course, setCourse, handleSubmit, loading
     }
     return (
         <div className="modal fade show d-block" tabIndex="-1" role="dialog" aria-modal="true">

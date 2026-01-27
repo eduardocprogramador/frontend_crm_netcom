@@ -1,4 +1,4 @@
-import Logo from '../../../public/img/logo.png'
+import Logo from '../../public/img/logo.png'
 
 const CardAuth = ({children, headline}) => {
   return (

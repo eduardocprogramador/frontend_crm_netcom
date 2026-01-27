@@ -1,7 +1,10 @@
-import BtnGoBack from "../BtnGoBack"
-import DateInterval from "../DateInterval"
+import BtnGoBack from "./BtnGoBack"
+import DateInterval from "./DateInterval"
 
-const Header = ({ initialDate, setInitialDate, finalDate, setFinalDate, total, handleSubmit }) => {
+const Header = ({ 
+    initialDate, setInitialDate, finalDate, 
+    setFinalDate, total, handleSubmit, loading 
+}) => {
     const props = { initialDate, setInitialDate, finalDate, setFinalDate }
     return (
         <div className="row mt-2">
@@ -12,7 +15,9 @@ const Header = ({ initialDate, setInitialDate, finalDate, setFinalDate, total, h
                 <DateInterval {...props} />
             </div>
             <div className="col-md-2 col-6 text-center">
-                <button className="btn btn-primary px-4" onClick={handleSubmit}>Gerar</button>
+                <button className="btn btn-primary px-4" onClick={handleSubmit} disabled={loading}>
+                    Gerar
+                </button>
             </div>
             <div className="col-md-2 col-6 d-flex justify-content-center align-items-center">
                 <h5>Total: {total}</h5>

@@ -1,4 +1,4 @@
-import Header from "../components/Graphic/Header"
+import Header from "../components/Header"
 import { getTodayDate } from "../utils/getTodayDate"
 import { useState } from "react"
 import { toast } from "react-toastify"
@@ -13,8 +13,10 @@ const GraphicTotalsMatriculado = () => {
     const [finalDate, setFinalDate] = useState(getTodayDate())
     const [matriculados, setMatriculados] = useState([])
     const [total, setTotal] = useState(0)
+    const [loading, setLoading] = useState(false)
     async function handleSubmit() {
         try {
+            setLoading(true)
             const response = await api.get('/matriculado/total_by_month', {
                 params: { initialDate, finalDate }
             })
@@ -22,10 +24,13 @@ const GraphicTotalsMatriculado = () => {
             setTotal(response.data.total)
         } catch (error) {
             toast.error(error.response.data.message)
+        } finally {
+            setLoading(false)
         }
     }
     const props = {
-        initialDate, setInitialDate, finalDate, setFinalDate, total, handleSubmit
+        initialDate, setInitialDate, finalDate, 
+        setFinalDate, total, handleSubmit, loading
     }
     return (
         <div className="container">

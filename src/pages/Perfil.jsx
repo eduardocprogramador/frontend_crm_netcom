@@ -62,7 +62,7 @@ const Perfil = () => {
                             <label className="mb-1">Email:</label>
                             <input required type="email" value={email} onChange={e => setEmail(e.target.value)} className="form-control mb-3" />
                             <div className="col-md-6 offset-md-3 col-8 offset-2">
-                                <input type="submit" value={loading ? 'Carregando...' : 'Editar'} disabled={loading} className="form-control btn btn-color text-light mb-4" />
+                                <input type="submit" value={loading ? 'Carregando...' : 'Editar'} disabled={loading} className="form-control btn btn-primary text-light mb-4" />
                             </div>
                         </form>
                         <div className="col-md-6 offset-md-3 col-8 offset-2">

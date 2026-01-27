@@ -3,7 +3,7 @@ import { handlePhoneChange } from "../utils/handlePhoneChange"
 
 const CardMatriculado = ({
     add, name, setName, phone, setPhone, category,
-    setCategory, course, setCourse, handleSubmit
+    setCategory, course, setCourse, handleSubmit, loading
 }) => {
     const props = { category, setCategory, course, setCourse }
     return (
@@ -27,7 +27,9 @@ const CardMatriculado = ({
             <SelectsCategoryCourse {...props} />
             <div className="row mt-3">
                 <div className="col-md-4 offset-md-4 col-sm-6 offset-sm-3">
-                    <button className="btn btn-primary w-100" onClick={handleSubmit}>{add ? 'Adicionar' : 'Editar'}</button>
+                    <button className="btn btn-primary w-100" onClick={handleSubmit} disabled={loading}>
+                        {loading ? 'Carregando...' : add ? 'Adicionar' : 'Editar'}
+                    </button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,4 @@
 :root {
-  --blue: #16479D;
   --white: #EEE;
 }
 * {
@@ -25,9 +24,6 @@ footer {
 }
 main {
   padding-top: 85px;
-}
-.btn-color {
-  background-color: var(--blue) !important;
 }
 .borda {
   border: 1px solid red;

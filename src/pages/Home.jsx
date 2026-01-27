@@ -1,4 +1,4 @@
-import CardHome from "../components/Home/CardHome"
+import CardHome from "../components/CardHome"
 
 const Home = () => {
   return (

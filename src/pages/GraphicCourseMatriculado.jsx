@@ -1,4 +1,4 @@
-import Header from "../components/Graphic/Header"
+import Header from "../components/Header"
 import { getTodayDate } from "../utils/getTodayDate"
 import { useState } from "react"
 import { graphic_course_matriculado } from "../dummy_data/graphic_course_matriculado"

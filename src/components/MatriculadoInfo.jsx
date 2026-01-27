@@ -1,4 +1,4 @@
-const MatriculadoInfo = ({ name, phone, course, date, onEdit, onDelete }) => {
+const MatriculadoInfo = ({ name, phone, course, date, onEdit, onDelete, loading }) => {
     return (
         <div className='py-1'>
             <div className='row mb-2'>
@@ -20,7 +20,9 @@ const MatriculadoInfo = ({ name, phone, course, date, onEdit, onDelete }) => {
                 </div>
             </div>
             <button className='btn btn-primary px-4 me-4' onClick={onEdit}>Editar</button>
-            <button className='btn btn-danger px-4' onClick={onDelete}>Excluir</button>
+            <button className='btn btn-danger px-4' onClick={onDelete} disabled={loading}>
+                Excluir
+            </button>
             <hr />
         </div>
     )

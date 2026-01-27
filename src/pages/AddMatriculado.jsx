@@ -10,20 +10,24 @@ const AddMatriculado = () => {
     const [phone, setPhone] = useState('')
     const [category, setCategory] = useState(-1)
     const [course, setCourse] = useState('')
+    const [loading, setLoading] = useState(false)
     async function handleSubmit() {
         const matriculado = { name, phone, category, course }
         try {
+            setLoading(true)
             const response = await api.post('/matriculado/add', matriculado)
             resetForm(setName, setPhone, setCourse)
             setCategory(-1)
             toast.success(response.data.message)
         } catch (error) {
             toast.error(error.response.data.message)
+        } finally {
+            setLoading(false)
         }
     }
     const props = {
-        name, setName, phone, setPhone, category,
-        setCategory, course, setCourse, handleSubmit
+        name, setName, phone, setPhone, category, setCategory, 
+        course, setCourse, handleSubmit, loading
     }
     return (
         <CardForm title='Adicione um Matriculado' add={true}>

@@ -4,7 +4,7 @@ import DateInterval from "./DateInterval"
 
 const Search = ({
     initialDate, setInitialDate, finalDate, setFinalDate, name, setName, 
-    category, setCategory, course, setCourse, total, handleSubmit
+    category, setCategory, course, setCourse, total, handleSubmit, loading
 }) => {
     const propsDate = { initialDate, setInitialDate, finalDate, setFinalDate }
     const propsSelects = { category, setCategory, course, setCourse }
@@ -25,7 +25,9 @@ const Search = ({
             <SelectsCategoryCourse {...propsSelects} />
             <div className="row mt-1">
                 <div className="col-md-3 col-sm-4 col-6 mx-auto">
-                    <button className="btn btn-primary w-100" onClick={handleSubmit}>Filtrar</button>
+                    <button className="btn btn-primary w-100" onClick={handleSubmit}>
+                        {loading ? 'Carregando...' : 'Filtrar'}
+                    </button>
                 </div>
             </div>
             <div className="d-flex justify-content-end me-2 mt-1">
