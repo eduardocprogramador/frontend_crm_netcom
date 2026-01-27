@@ -5,6 +5,7 @@ import { AuthContext } from "../context/Auth"
 import { useContext } from 'react'
 import { toast } from "react-toastify"
 import api from '../utils/api'
+import BtnGoBack from '../components/BtnGoBack'
 
 const Perfil = () => {
     const { user, setUser, loading, setLoading, logout } = useContext(AuthContext)
@@ -45,7 +46,7 @@ const Perfil = () => {
     const userImgURL = user?.img ? `${import.meta.env.VITE_API}/img/user/${user.img}` : null
     return (
         <div className="container mt-4 mb-3">
-            <Title>Perfil</Title>
+            <Title btn={<BtnGoBack />}>Perfil</Title>
             <div className="col-md-6 offset-md-3">
                 <div className="card">
                     <div className="col-4 offset-4 mt-4">

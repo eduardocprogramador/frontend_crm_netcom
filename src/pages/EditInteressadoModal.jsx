@@ -1,13 +1,11 @@
 import CardForm from "../components/CardForm"
 import { useState } from "react"
 import { toast } from "react-toastify"
-import { useParams } from "react-router-dom"
 import CardInteressado from "../components/CardInteressado"
 import { useEffect } from "react"
 import api from "../utils/api"
 
-const EditInteressado = () => {
-    const { id } = useParams()
+const EditInteressadoModal = ({ id, onClose, onSaved }) => {
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
@@ -37,6 +35,8 @@ const EditInteressado = () => {
         try {
             const response = await api.patch(`/interessado/${id}`, interessado)
             toast.success(response.data.message)
+            onSaved?.(response.data.interessado)
+            onClose()
         } catch (error) {
             toast.error(error.response.data.message)
         }
@@ -47,10 +47,18 @@ const EditInteressado = () => {
         email, setEmail, obs, setObs, handleSubmit
     }
     return (
-        <CardForm title='Edite um Interessado' goBack='/consultar_interessado'>
-            <CardInteressado {...props} add={false} />
-        </CardForm>
+        <div className="modal fade show d-block" tabIndex="-1" role="dialog" aria-modal="true">
+            <div className="modal-dialog modal-xl" role="document">
+                <div className="modal-content">
+                    <div className="modal-body p-2">
+                        <CardForm title="Edite um Interessado" add={false} onClose={onClose}>
+                            <CardInteressado {...props} add={false} />
+                        </CardForm>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 
-export default EditInteressado
+export default EditInteressadoModal

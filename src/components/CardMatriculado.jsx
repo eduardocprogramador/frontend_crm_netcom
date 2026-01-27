@@ -2,10 +2,10 @@ import SelectsCategoryCourse from "./SelectsCategoryCourse"
 import { handlePhoneChange } from "../utils/handlePhoneChange"
 
 const CardMatriculado = ({
-    add, name, setName, phone, setPhone, category, 
+    add, name, setName, phone, setPhone, category,
     setCategory, course, setCourse, handleSubmit
 }) => {
-    const props = {category, setCategory, course, setCourse}
+    const props = { category, setCategory, course, setCourse }
     return (
         <div>
             <div className="row">

@@ -2,12 +2,10 @@ import CardForm from "../components/CardForm"
 import { useState } from "react"
 import { toast } from "react-toastify"
 import CardMatriculado from "../components/CardMatriculado"
-import { useParams } from "react-router-dom"
 import { useEffect } from "react"
 import api from "../utils/api"
 
-const EditMatriculado = () => {
-    const { id } = useParams()
+const EditMatriculadoModal = ({ id, onClose, onSaved }) => {
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const [category, setCategory] = useState(-1)
@@ -31,6 +29,8 @@ const EditMatriculado = () => {
         try {
             const response = await api.patch(`/matriculado/${id}`, matriculado)
             toast.success(response.data.message)
+            onSaved?.(response.data.matriculado)
+            onClose()
         } catch (error) {
             toast.error(error.response.data.message)
         }
@@ -40,10 +40,18 @@ const EditMatriculado = () => {
         setCategory, course, setCourse, handleSubmit
     }
     return (
-        <CardForm title='Edite um Matriculado' goBack='/consultar_matriculado'>
-            <CardMatriculado {...props} add={false} />
-        </CardForm>
+        <div className="modal fade show d-block" tabIndex="-1" role="dialog" aria-modal="true">
+            <div className="modal-dialog modal-xl" role="document">
+                <div className="modal-content">
+                    <div className="modal-body p-2">
+                        <CardForm title="Edite um Matriculado" add={false} onClose={onClose}>
+                            <CardMatriculado {...props} add={false} />
+                        </CardForm>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 
-export default EditMatriculado
+export default EditMatriculadoModal

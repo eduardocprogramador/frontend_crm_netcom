@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom"
-
-const MatriculadoInfo = ({ id, name, phone, course, date, onDelete }) => {
+const MatriculadoInfo = ({ name, phone, course, date, onEdit, onDelete }) => {
     return (
         <div className='py-1'>
             <div className='row mb-2'>
@@ -21,7 +19,7 @@ const MatriculadoInfo = ({ id, name, phone, course, date, onDelete }) => {
                     <h6>{date}</h6>
                 </div>
             </div>
-            <Link to={`/editar_matriculado/${id}`} className='btn btn-primary px-4 me-4'>Editar</Link>
+            <button className='btn btn-primary px-4 me-4' onClick={onEdit}>Editar</button>
             <button className='btn btn-danger px-4' onClick={onDelete}>Excluir</button>
             <hr />
         </div>

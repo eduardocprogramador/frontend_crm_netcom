@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 
-const BtnGoBack = ({ to = '/' }) => {
+const BtnGoBack = () => {
     return (
-        <Link to={to} className="btn btn-color text-light">
+        <Link to='/' className="btn btn-color text-light">
             <i className="fa-solid fa-backward"></i> Voltar
         </Link>
     )

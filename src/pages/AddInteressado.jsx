@@ -32,7 +32,7 @@ const AddInteressado = () => {
         email, setEmail, obs, setObs, handleSubmit
     }
     return (
-        <CardForm title='Adicione um Interessado'>
+        <CardForm title='Adicione um Interessado' add={true}>
             <CardInteressado {...props} add={true} />
         </CardForm>
     )

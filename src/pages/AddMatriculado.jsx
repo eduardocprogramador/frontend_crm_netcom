@@ -26,7 +26,7 @@ const AddMatriculado = () => {
         setCategory, course, setCourse, handleSubmit
     }
     return (
-        <CardForm title='Adicione um Matriculado'>
+        <CardForm title='Adicione um Matriculado' add={true}>
             <CardMatriculado {...props} add={true} />
         </CardForm>
     )

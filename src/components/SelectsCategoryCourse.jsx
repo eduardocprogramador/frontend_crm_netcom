@@ -2,7 +2,7 @@ import { categories } from "../data/categories"
 import { courses } from "../data/courses"
 
 const SelectsCategoryCourse = ({category, setCategory, course, setCourse}) => {
-    const filteredCourses = courses.filter(c => c[0] === category)
+    const filteredCourses = courses.filter(c => c[0] == category)
     function handleCategoryChange(e){
         setCategory(Number(e.target.value))
         setCourse('')
@@ -14,7 +14,7 @@ const SelectsCategoryCourse = ({category, setCategory, course, setCourse}) => {
                 <select className="form-control text-center mb-4"
                     value={category} onChange={handleCategoryChange}
                 >
-                    <option value={-1} disabled>Selecione</option>
+                    <option value={-1}>Selecione</option>
                     {categories.map((c, index) => (
                         <option key={index} value={index}>
                             {c}
@@ -29,7 +29,7 @@ const SelectsCategoryCourse = ({category, setCategory, course, setCourse}) => {
                         <label className="mb-1">Curso:</label>
                         <select className="form-control text-center mb-4" 
                             value={course} onChange={e => setCourse(e.target.value)} 
-                            disabled={category === -1}
+                            disabled={category == -1}
                         >
                             <option value="" disabled>Selecione</option>
                             {filteredCourses.map((c, index) => (
