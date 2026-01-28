@@ -1,30 +1,74 @@
-## 🚀 Frontend Site
+# 🚀 Frontend CRM Netcom
 
-Framework frontend criado para acelerar o desenvolvimento de aplicações **React**, trazendo **estrutura organizada, padrões reutilizáveis e base pronta para projetos reais**.
+Interface web desenvolvida para gestão acadêmica e comercial da **Netcom**, focada em **matriculados**, **interessados**, **relatórios** e **tomada de decisão baseada em dados**.
 
-Este projeto foi desenvolvido para evitar retrabalho e facilitar a escalabilidade de aplicações frontend.
+---
 
-## ✨ O que é este projeto?
+## 🎯 Visão Geral
 
-Um **frontend reutilizável** que serve como base para qualquer aplicação React moderna, focando em:
+O **CRM Netcom** centraliza informações acadêmicas e comerciais, permitindo que gestores acompanhem métricas importantes como:
 
-- Organização de código
-- Padronização visual
-- Reaproveitamento de componentes
-- Facilidade de manutenção e crescimento
+* Volume de matrículas
+* Distribuição por curso e categoria
+* Evolução ao longo do tempo
+* Filtros avançados por data, categoria e curso
 
-Ideal para projetos pessoais, acadêmicos ou comerciais.
+Tudo isso por meio de **dashboards visuais**, formulários intuitivos e integração direta com o backend.
 
-## 🎯 Principais objetivos
+---
 
-- Reduzir o tempo de setup de novos projetos React
-- Facilitar a criação de telas com componentes reutilizáveis
-- Servir como base para aplicações maiores (dashboards, sistemas, sites)
+## 🧠 Principais Funcionalidades
 
-## 🧩 O que vem pronto?
+✅ Cadastro, consulta, edição e exclusão de **Matriculados** e **Interessados**
+✅ Filtros avançados por período, categoria e curso
+✅ Gráficos interativos com **Recharts**
+✅ Indicadores visuais para apoio à tomada de decisão
+✅ Comunicação com API REST (Node.js)
+✅ Feedbacks visuais com Toasts
+✅ Interface responsiva e organizada
 
-- ⚡ **React + Vite** (build rápido e moderno)
-- 🎨 Estrutura base de estilos
-- 🧱 Componentes reutilizáveis
-- 📂 Organização clara de pastas
-- 🛠 Scripts prontos para desenvolvimento e build
+---
+
+## 📊 Dashboards e Gráficos
+
+O sistema possui gráficos desenvolvidos para uso **gerencial**, incluindo:
+
+* Total de matrículas por período
+* Total de interessados por período
+* Matrículas por curso
+* Interessados por canal
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+* ⚛️ **React.js**
+* 📊 **Recharts** (visualização de dados)
+* 🎨 **Bootstrap** (layout e responsividade)
+* 🔗 **Axios** (requisições HTTP)
+* 🔔 **React Toastify** (feedbacks ao usuário)
+* 🧠 **Hooks** (`useState`, `useEffect`)
+
+---
+
+## 🧩 Arquitetura e Boas Práticas
+
+* Componentização clara e reutilizável
+* Separação entre lógica, visual e serviços
+* Organização por domínios (components, utils, services)
+* Código legível, escalável e fácil de manter
+
+Este projeto reflete preocupações reais de um desenvolvedor **Full Stack**, pensando em **manutenção e evolução**.
+
+---
+
+## 🔗 Integração com Backend
+
+O frontend consome uma **API RESTful**, responsável por:
+
+* Persistência de dados
+* Agregações e relatórios
+* Filtros complexos por data e categoria
+
+
+📌 *Sugestão:* combine este projeto com o backend correspondente para apresentar uma solução **end-to-end completa*.
