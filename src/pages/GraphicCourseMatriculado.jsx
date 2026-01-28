@@ -62,7 +62,7 @@ const GraphicCourseMatriculado = () => {
                             dataKey="index"
                             type="number"
                             domain={[-0.5, dataWithIndex.length - 0.5]}
-                            ticks={dataWithIndex.map(d => d.index)}   
+                            ticks={dataWithIndex.map(d => d.index)}
                             interval={0}
                             tick={{ fontSize: 11 }}
                             tickFormatter={(value) => dataWithIndex[value]?.sigla ?? ""}
