@@ -20,11 +20,17 @@ Tudo isso por meio de **dashboards visuais**, formulários intuitivos e integra�
 ## 🧠 Principais Funcionalidades
 
 ✅ Cadastro, consulta, edição e exclusão de **Matriculados** e **Interessados**
+
 ✅ Filtros avançados por período, categoria e curso
+
 ✅ Gráficos interativos com **Recharts**
+
 ✅ Indicadores visuais para apoio à tomada de decisão
+
 ✅ Comunicação com API REST (Node.js)
+
 ✅ Feedbacks visuais com Toasts
+
 ✅ Interface responsiva e organizada
 
 ---
