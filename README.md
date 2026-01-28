@@ -69,6 +69,3 @@ O frontend consome uma **API RESTful**, responsável por:
 * Persistência de dados
 * Agregações e relatórios
 * Filtros complexos por data e categoria
-
-
-📌 *Sugestão:* combine este projeto com o backend correspondente para apresentar uma solução **end-to-end completa*.
