@@ -15,6 +15,8 @@ O **CRM Netcom** centraliza informações acadêmicas e comerciais, permitindo q
 
 Tudo isso por meio de **dashboards visuais**, formulários intuitivos e integração direta com o backend.
 
+O programa com dados fictícios pode ser visto em: http://crmnetcom.thespecialoffer.net/
+
 ---
 
 ## 🧠 Principais Funcionalidades
