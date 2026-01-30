@@ -25,7 +25,7 @@ const Search = ({
             <SelectsCategoryCourse {...propsSelects} />
             <div className="row mt-1">
                 <div className="col-md-3 col-sm-4 col-6 mx-auto">
-                    <button className="btn btn-primary w-100" onClick={handleSubmit}>
+                    <button className="btn btn-primary w-100" onClick={handleSubmit} disabled={loading}>
                         {loading ? 'Carregando...' : 'Filtrar'}
                     </button>
                 </div>

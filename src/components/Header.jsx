@@ -16,7 +16,7 @@ const Header = ({
             </div>
             <div className="col-md-2 col-6 text-center">
                 <button className="btn btn-primary px-4" onClick={handleSubmit} disabled={loading}>
-                    Gerar
+                    {loading ? 'Carregando...' : 'Gerar'}
                 </button>
             </div>
             <div className="col-md-2 col-6 d-flex justify-content-center align-items-center">
